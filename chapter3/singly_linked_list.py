@@ -47,9 +47,9 @@ class UnorderdList:
             self.head = temp
         else:
             current = self.head
-            current_i = 1
-            while current != None and current_i < position:
-                current_i += 1
+            k = 1
+            while current != None and k < position:
+                k += 1
                 previous_node = current
                 current = current.get_next()
             previous_node.set_next(temp)
@@ -69,6 +69,24 @@ class UnorderdList:
             self.head = current.get_next()
         else:
             previous.set_next(current.get_next())
+
+    def delete(self, position):
+        k = 1
+        p = self.head
+        q = None
+        if position == 1:
+            self.head = self.head.get_next()
+            del(p)
+        else:
+            while p is not None and k < position:
+                k += 1
+                q = p
+                p = p.get_next()
+            if p is None:
+                print('position does not exist')
+            else:
+                q.set_next(p.get_next())
+                del(p)
 
     def __repr__(self):
         current = self.head
